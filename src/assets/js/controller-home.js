@@ -3,7 +3,7 @@ var app = angular.module("app");
 app.controller("home-controller", ["$scope", function($scope) {
 
     var contact_list = [
-        { "id": 1, "name": "Santosh", "mobile": "9323791976", "icon": "apple" },
+        { "id": 1, "name": "Santosh", "mobile": "9323791976", "icon": "apple", "selected": true },
         { "id": 2, "name": "Vivek", "mobile": "9323791976", "icon": "whatsapp" },
         { "id": 3, "name": "Sunil", "mobile": "9323791976", "icon": "twitter" },
         { "id": 4, "name": "Hari", "mobile": "9323791976", "icon": "amazon" },
@@ -33,6 +33,25 @@ app.controller("home-controller", ["$scope", function($scope) {
 
 
 
+    $scope.left_nav_list_user_item_click = function(item) {
+        // MAKE EACH ELEMENT SELECTED FALSE
+        _.each($scope.refjson.contact_list, function(iobj) {
+            iobj.selected = false;
+        });
+
+        item.background = true;
+    }
+
+
+    $scope.fnReviewEmployeeId = function(index) {
+        if ($scope.selectedIndex === null) {
+            $scope.selectedIndex = index;
+        } else if ($scope.selectedIndex === index) {
+            $scope.selectedIndex = null;
+        } else {
+            $scope.selectedIndex = index;
+        }
+    }
 
 
 }]);

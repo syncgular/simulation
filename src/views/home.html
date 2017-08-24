@@ -1,5 +1,12 @@
+<style>
+    .selectedIndex {
+        background: lightskyblue;
+    }
+</style>
+
+
 <md-toolbar layout="row">
-    <h4> Contact App</h4>
+    <h4> Let's Connect</h4>
 </md-toolbar>
 
 <!-- Container #2 -->
@@ -9,8 +16,8 @@
     <md-sidenav md-is-locked-open="true" class="md-whiteframe-z1" style="height:90vh">
         <md-list>
             <!-- List item #1 -->
-            <md-list-item class="md-2-line" ng-repeat="item in refjson.contact_list">
-                <ng-md-icon icon="{{item.icon}}" class="md-avatar-icon" size="45" style="fill: rgba(123, 38, 11, 0.48)"></ng-md-icon>
+            <md-list-item class="md-2-line" ng-class="{selectedIndex: selectedIndex===$index}" ng-repeat="item in refjson.contact_list" ng-click="fnReviewEmployeeId($index)">
+                <ng-md-icon icon="{{item.icon}}" class="md-avatar" size="40" style="fill: rgba(123, 38, 11, 0.48)"></ng-md-icon>
 
                 <div class="md-list-item-text">
                     <h3>{{item.name}}</h3>

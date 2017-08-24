@@ -43,5 +43,41 @@
                 {{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}
             </div>
         </md-toolbar>
+
+        <md-card flex-offset="5" flex="85">
+            <md-card-content>
+
+            </md-card-content>
+        </md-card>
+
+
+        <md-card flex-offset="5" flex="85" style="height:78vh; overflow-y:scroll ">
+            <md-card-content>
+                <md-list>
+                    <!-- List item #1 -->
+                    <md-list-item class="md-3-line" ng-repeat="item in refjson.travel_detal_list" ng-click="null">
+                        <ng-md-icon icon="directions_car" class="md-avatar" size="50" style="fill: rgba(123, 38, 11, 0.48)"></ng-md-icon>
+
+                        <div class="md-list-item-text">
+                            <h4>Driver - {{item.driver}}</h4>
+                            <h4>{{item.from }} - {{item.to}}</h4>
+
+                            <p class=" md-caption">Fare - {{item.fare}}</p>
+                            <p class=" md-caption">{{item.cab}}</p>
+                        </div>
+
+                        <span class="md-secondary md-caption">{{item.booking_time | date:'dd MMM yy'}}</span>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-card-content>
+        </md-card>
+
+
+        <md-card flex-offset="5" flex="85">
+            <md-card-content>
+
+            </md-card-content>
+        </md-card>
     </div>
 </div>

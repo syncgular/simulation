@@ -32,7 +32,8 @@ app.controller("home-controller", ["$scope", function($scope) {
         "fare": 800.00,
         "booking_time": new Date(),
         "pickup_time": new Date(),
-        "address": ""
+        "address": "",
+        "cab": "MH-12HN 6663"
     };
     var travel_detal_list_original = [angular.copy(ref_traverl),
         angular.copy(ref_traverl), angular.copy(ref_traverl),

@@ -10,8 +10,10 @@
 
     <!-- Container #3 -->
     <md-sidenav md-is-locked-open="true" class="md-whiteframe-z1">
-        <md-toolbar layout="row" layout-padding>
-            Let's Connect
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                Let's Connect
+            </div>
         </md-toolbar>
 
         <md-input-container md-no-float style="margin-bottom:-20px;">
@@ -36,8 +38,10 @@
 
 
     <div flex>
-        <md-toolbar layout="row" layout-padding>
-            Let's Connect
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                {{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}
+            </div>
         </md-toolbar>
     </div>
 </div>

@@ -2,7 +2,7 @@ var app = angular.module("app");
 
 app.controller("home-controller", ["$scope", function($scope) {
 
-    var contact_list = [
+    var contact_list_original = [
         { "id": 1, "name": "Santosh", "mobile": "9323791976", "icon": "apple", "selected": true },
         { "id": 2, "name": "Vivek", "mobile": "9323791976", "icon": "whatsapp" },
         { "id": 3, "name": "Sunil", "mobile": "9323791976", "icon": "twitter" },
@@ -26,7 +26,9 @@ app.controller("home-controller", ["$scope", function($scope) {
     var refjson = {
         "title": "Hello Angular Material",
 
-        "contact_list": contact_list
+        "contact_list": angular.copy(contact_list_original),
+
+        "search_text": ""
     };
 
     $scope.refjson = refjson;
@@ -39,19 +41,25 @@ app.controller("home-controller", ["$scope", function($scope) {
             iobj.selected = false;
         });
 
-        item.background = true;
-    }
+        item.selected = true;
+    };
 
 
-    $scope.fnReviewEmployeeId = function(index) {
-        if ($scope.selectedIndex === null) {
-            $scope.selectedIndex = index;
-        } else if ($scope.selectedIndex === index) {
-            $scope.selectedIndex = null;
+    $scope.search_filter = function() {
+        var search_text = $scope.refjson.search_text
+        console.log(search_text);
+
+        var filter_contact_list = [];
+        if (search_text && search_text.trim().length > 0) {
+            filter_contact_list = _.filter(contact_list_original, function(item) {
+                return item.name.toLowerCase().indexOf(search_text.toLowerCase()) !== -1;
+            });
         } else {
-            $scope.selectedIndex = index;
+            filter_contact_list = angular.copy(contact_list_original);
         }
-    }
+
+        $scope.refjson.contact_list = filter_contact_list;
+    };
 
 
 }]);

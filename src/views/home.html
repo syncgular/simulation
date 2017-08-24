@@ -5,27 +5,20 @@
 </style>
 
 
-<md-toolbar layout="row" layout-padding>
-    <div flex="25" class="md-whiteframe-z">
-        Let's Connect
-    </div>
-
-    <div flex class="md-whiteframe-z" style="margin-left:-50px">
-        <!--<ng-md-icon icon="{{refjson.selected_contact.icon}}" size="30" style="fill: rgb(218, 205, 201)"></ng-md-icon>-->
-        {{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}
-    </div>
-</md-toolbar>
-
 <!-- Container #2 -->
-<div flex layout="row">
+<div layout="row">
 
     <!-- Container #3 -->
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z1" style="height:90vh">
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z1">
+        <md-toolbar layout="row" layout-padding>
+            Let's Connect
+        </md-toolbar>
+
         <md-input-container md-no-float style="margin-bottom:-20px;">
             <input ng-model="refjson.search_text" type="text" placeholder="Search" ng-change="search_filter()">
         </md-input-container>
 
-        <md-list>
+        <md-list style="height:84vh; overflow-y:scroll ">
             <!-- List item #1 -->
             <md-list-item class="md-2-line" ng-class="{selectedIndex: item.selected===true}" ng-repeat="item in refjson.contact_list" ng-click="left_nav_list_user_item_click(item)">
                 <ng-md-icon icon="{{item.icon}}" class="md-avatar" size="40" style="fill: rgba(123, 38, 11, 0.48)"></ng-md-icon>
@@ -42,10 +35,9 @@
     </md-sidenav>
 
 
-
-    <!-- Container #4 -->
-    <md-content flex id="content">
-        Hello World
-    </md-content>
-
+    <div flex>
+        <md-toolbar layout="row" layout-padding>
+            Let's Connect
+        </md-toolbar>
+    </div>
 </div>

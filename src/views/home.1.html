@@ -23,7 +23,7 @@
         <md-list style="height:84vh; overflow-y:scroll ">
             <!-- List item #1 -->
             <md-list-item class="md-2-line" ng-class="{selectedIndex: item.selected===true}" ng-repeat="item in refjson.contact_list" ng-click="left_nav_list_user_item_click(item)">
-                <ng-md-icon icon="{{item.icon}}" class="md-avatar" size="40" style="fill: #ea734d"></ng-md-icon>
+                <ng-md-icon icon="{{item.icon}}" class="md-avatar" size="40" style="fill: rgba(123, 38, 11, 0.48)"></ng-md-icon>
 
                 <div class="md-list-item-text">
                     <h3>{{item.name}}</h3>
@@ -54,30 +54,28 @@
 
         <md-content flex-offset="5" flex="85" style="height:82vh; overflow-y:scroll ">
             <md-list-item ng-repeat="item in refjson.travel_detal_list" ng-click="null">
-                <md-card flex>
-                    <md-card-content>
-                        <div layout="row">
-                            <div flex="10">
-                                <ng-md-icon icon="directions_car" class="md-avatar" size="70" style="fill:#ea734d"></ng-md-icon>
-                            </div>
+                <div layout="row" flex>
+                    <div flex="10">
+                        <ng-md-icon icon="directions_car" class="md-avatar" size="70" style="fill: rgba(123, 38, 11, 0.48)"></ng-md-icon>
+                    </div>
 
-                            <div flex="25">
-                                <span class="md-headline">{{item.driver}}</span><br/>
-                                <span class="md-subhead">{{item.cab}}</span><br/>
-                                <!--<span>Fare - {{item.fare}}</span>-->
-                            </div>
+                    <div flex="25">
+                        <span class="md-headline">{{item.driver}}</span><br/>
+                        <span class="md-subhead">{{item.cab}}</span><br/>
+                        <!--<span>Fare - {{item.fare}}</span>-->
+                    </div>
 
-                            <div flex-offset="10" flex="45">
-                                <span class="md-subhead">KHG - AIRPORT</span>
-                            </div>
+                    <div flex-offset="10" flex="45">
+                        <span class="md-subhead">KHG - AIRPORT</span>
+                    </div>
 
-                            <div>
-                                {{item.booking_time | date:'dd MMM yy'}}
-                            </div>
-                        </div>
-                    </md-card-content>
+                    <div>
+                        {{item.booking_time | date:'dd MMM yy'}}
+                    </div>
+                </div>
 
-                </md-card>
+                <md-divider></md-divider>
+
             </md-list-item>
         </md-content>
 

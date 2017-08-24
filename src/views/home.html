@@ -5,8 +5,15 @@
 </style>
 
 
-<md-toolbar layout="row">
-    <h4> Let's Connect</h4>
+<md-toolbar layout="row" layout-padding>
+    <div flex="25" class="md-whiteframe-z">
+        Let's Connect
+    </div>
+
+    <div flex class="md-whiteframe-z" style="margin-left:-50px">
+        <!--<ng-md-icon icon="{{refjson.selected_contact.icon}}" size="30" style="fill: rgb(218, 205, 201)"></ng-md-icon>-->
+        {{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}
+    </div>
 </md-toolbar>
 
 <!-- Container #2 -->

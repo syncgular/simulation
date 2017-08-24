@@ -23,12 +23,36 @@ app.controller("home-controller", ["$scope", function($scope) {
         { "id": 7, "name": "Kohli Virat", "mobile": "9323791976", "icon": "color_lens", "last_pickup_date": new Date() },
 
     ];
+
+    let ref_traverl = {
+        "id": 1,
+        "from": "Kharghar",
+        "to": "Airport",
+        "driver": "Santosh Indian",
+        "fare": 800.00,
+        "booking_time": new Date(),
+        "pickup_time": new Date(),
+        "address": ""
+    };
+    var travel_detal_list_original = [angular.copy(ref_traverl),
+        angular.copy(ref_traverl), angular.copy(ref_traverl),
+        angular.copy(ref_traverl), angular.copy(ref_traverl),
+        angular.copy(ref_traverl), angular.copy(ref_traverl),
+        angular.copy(ref_traverl), angular.copy(ref_traverl),
+        angular.copy(ref_traverl), angular.copy(ref_traverl),
+        angular.copy(ref_traverl), angular.copy(ref_traverl),
+    ];
+
     var refjson = {
         "title": "Hello Angular Material",
 
         "contact_list": angular.copy(contact_list_original),
 
-        "search_text": ""
+        "search_text": "",
+
+        "travel_detal_list": angular.copy(travel_detal_list_original),
+
+        "selected_contact": contact_list_original[0]
     };
 
     $scope.refjson = refjson;
@@ -42,6 +66,8 @@ app.controller("home-controller", ["$scope", function($scope) {
         });
 
         item.selected = true;
+
+        $scope.refjson.selected_contact = item;
     };
 
 

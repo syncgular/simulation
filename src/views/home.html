@@ -22,15 +22,19 @@
 
         <md-list style="height:84vh; overflow-y:scroll ">
             <!-- List item #1 -->
-            <md-list-item class="md-2-line" ng-class="{selectedIndex: item.selected===true}" ng-repeat="item in refjson.contact_list" ng-click="left_nav_list_user_item_click(item)">
+            <md-list-item class="md-3-line" ng-class="{selectedIndex: item.selected===true}" ng-repeat="item in refjson.contact_list" ng-click="left_nav_list_user_item_click(item)">
                 <ng-md-icon icon="{{item.icon}}" class="md-avatar" size="40" style="fill: #ea734d"></ng-md-icon>
 
                 <div class="md-list-item-text">
                     <h3>{{item.name}}</h3>
-                    <p>{{item.mobile}}</p>
+                    <p class=" md-caption">{{item.mobile}}</p>
+                    <p class=" md-caption">{{item.address}}</p>
                 </div>
 
-                <span class="md-secondary md-caption">{{item.last_pickup_date | date:'dd MMM yy'}}</span>
+                <div class="md-secondary">
+                    <div class=" md-caption">{{item.city}}</div>
+                </div>
+
                 <md-divider></md-divider>
             </md-list-item>
         </md-list>
@@ -52,7 +56,7 @@
         </md-card>
         -->
 
-        <md-content flex-offset="5" flex="85" style="height:82vh; overflow-y:scroll ">
+        <md-content flex-offset="5" flex="75" style="height:82vh; overflow-y:scroll ">
             <md-list-item ng-repeat="item in refjson.travel_detal_list" ng-click="null">
                 <md-card flex>
                     <md-card-content>
@@ -82,7 +86,7 @@
         </md-content>
 
 
-        <md-card flex-offset="5" flex="85" class="md-primary">
+        <md-card flex-offset="5" flex="75" class="md-primary">
 
             <md-toolbar>
                 <div class="md-toolbar-tools">

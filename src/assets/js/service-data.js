@@ -57,7 +57,7 @@ app.service("dataService", [function() {
         { "name": "Nishar Hussain", "type": "D" },
         { "name": "Mahesh Singh", "type": "D" },
         { "name": "Suresh Babu", "type": "D" },
-        { "name": "Raju Bhaiya", "type": "D" },
+        { "name": "Raju Bhai", "type": "D" },
         { "name": "Pawan Singh", "type": "D" },
         { "name": "Jigar Sharma", "type": "D" },
         { "name": "Ram Babu", "type": "D" },
@@ -96,20 +96,20 @@ app.service("dataService", [function() {
     ];
 
     this.sample_destination_list = [
-        { "address": "Domestic Airport", "city": "Mumbai", "fare": 800 },
-        { "address": "Bandra Stn", "city": "Mumbai", "fare": 700 },
-        { "address": "Mumbai Central", "city": "Mumbai", "fare": 800 },
+        { "dest_address": "Domestic Airport", "dest_city": "Mumbai", "fare": 800 },
+        { "dest_address": "Bandra Stn", "dest_city": "Mumbai", "fare": 700 },
+        { "dest_address": "Mumbai Central", "dest_city": "Mumbai", "fare": 800 },
 
-        { "address": "CST Terminus", "city": "Mumbai", "fare": 700 },
-        { "address": "Bandra Kurla Complex", "city": "Mumbai", "fare": 700 },
-        { "address": "Andheri", "city": "Mumbai", "fare": 800 },
+        { "dest_address": "CST Terminus", "dest_city": "Mumbai", "fare": 700 },
+        { "dest_address": "Bandra Kurla Complex", "dest_city": "Mumbai", "fare": 700 },
+        { "dest_address": "Andheri", "dest_city": "Mumbai", "fare": 800 },
 
-        { "address": "Kurla", "city": "Mumbai", "fare": 600 },
-        { "address": "Marine Drive", "city": "Mumbai", "fare": 800 },
-        { "address": "Gateway of India", "city": "Mumbai", "fare": 800 },
+        { "dest_address": "Kurla", "dest_city": "Mumbai", "fare": 600 },
+        { "dest_address": "Marine Drive", "dest_city": "Mumbai", "fare": 800 },
+        { "dest_address": "Gateway of India", "dest_city": "Mumbai", "fare": 800 },
 
-        { "address": "International Airport", "city": "Mumbai", "fare": 800 },
-        { "address": "Vashi", "city": "Mumbai", "fare": 250 },
+        { "dest_address": "International Airport", "dest_city": "Mumbai", "fare": 800 },
+        { "dest_address": "Vashi", "dest_city": "Mumbai", "fare": 250 },
     ];
 
 
@@ -118,7 +118,12 @@ app.service("dataService", [function() {
         var customer_list = this.util_prepare_customer_driver_data(this.sample_customer_list);
         var driver_list = this.util_prepare_customer_driver_data(this.sample_driver_list);
 
+        _.each(customer_list, function(customer) {
+            sthis.populate_customer_driver_time_line(customer, driver_list);
+        });
+
         var concated_list = customer_list.concat(driver_list);
+        console.log(concated_list)
         return concated_list;
     };
 
@@ -158,45 +163,49 @@ app.service("dataService", [function() {
     }
 
 
-    this.get_customer_time_line = function() {
+    this.populate_customer_driver_time_line = function(customer, driver_list) {
         var time_line_list = [];
 
-        var rand_time_line = sthis.getRandomInt(0, this.sample_destination_list.length);
+        var rand_time_line = this.getRandomInt(5, this.sample_destination_list.length);
         for (var i = 0; i < rand_time_line; i++) {
             var time_line = {};
 
+            // POPULATE CUSTOMER DETAIL
+            time_line["passanger"] = customer;
+
+            // RANDOM DRIVER
+            var rand_driver = this.getRandomInt(0, driver_list.length - 1);
+            var rand_driver_obj = driver_list[rand_driver];
+            time_line["driver"] = rand_driver_obj;
 
 
+            // RANDOM DESTINATION
+            var rand_dest = this.getRandomInt(0, this.sample_destination_list.length - 1);
+            var rand_dest_obj = this.sample_destination_list[rand_dest];
+            for (var key in rand_dest_obj) {
+                time_line[key] = rand_dest_obj[key];
+            }
+
+
+            var dmonth = this.getRandomInt(1, 12);
+            var ddate = this.getRandomInt(1, 28);
+            var dhour = this.getRandomInt(1, 23);
+            var dmin = this.getRandomInt(0, 59);
+            var dstr = `2017-${dmonth}-${ddate} ${dhour}:${dmin}`;
+            time_line.booking_time = moment(dstr, 'YYYY-MM-DD HH:mm').toDate();
+            time_line.pickup_time = moment(dstr, 'YYYY-MM-DD HH:mm').toDate();
+
+            // PUSH TO CUSTOMER TIME LINE
             time_line_list.push(time_line);
+
+            // PUSH TO DRIVER TIME LINE
+            rand_driver_obj.time_line_list = rand_driver_obj.time_line_list || [];
+            rand_driver_obj.time_line_list.push(time_line);
         }
 
-        return time_line_list;
+        customer.time_line_list = time_line_list;
     };
 
-    this.get_travel_detal_list = function() {
-        let ref_traverl = {
-            "id": 1,
-            "from": "Kharghar",
-            "to": "Airport",
-            "driver": "Santosh Indian",
-            "fare": 800.00,
-            "booking_time": new Date(),
-            "pickup_time": new Date(),
-            "address": "",
-            "cab": "MH-12HN 6663"
-        };
 
-        var travel_detal_list_original = [angular.copy(ref_traverl),
-            angular.copy(ref_traverl), angular.copy(ref_traverl),
-            angular.copy(ref_traverl), angular.copy(ref_traverl),
-            angular.copy(ref_traverl), angular.copy(ref_traverl),
-            angular.copy(ref_traverl), angular.copy(ref_traverl),
-            angular.copy(ref_traverl), angular.copy(ref_traverl),
-            angular.copy(ref_traverl), angular.copy(ref_traverl),
-        ];
-
-
-        return travel_detal_list_original;
-    };
 
 }])

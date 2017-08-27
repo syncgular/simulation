@@ -59,7 +59,7 @@
         -->
 
         <md-content flex-offset="5" flex="75" style="height:82vh; overflow-y:scroll ">
-            <md-list-item ng-repeat="item in refjson.travel_detal_list" ng-click="null">
+            <md-list-item ng-repeat="item in refjson.selected_contact.time_line_list" ng-click="null">
                 <md-card flex>
                     <md-card-content>
                         <div layout="row">
@@ -68,16 +68,16 @@
                             </div>
 
                             <div flex="25">
-                                <span class="md-title">{{item.driver}}</span><br/>
-                                <span class="md-subhead">{{item.cab}}</span><br/>
+                                <span class="md-title">{{item.driver.name}}</span><br/>
+                                <span class="md-subhead">{{item.driver.cab}}</span><br/>
                                 <!--<span>Fare - {{item.fare}}</span>-->
                             </div>
 
-                            <div flex-offset="20" flex="35">
+                            <div flex-offset="15" flex="35">
                                 <div layout="column">
-                                    <span class="md-subhead">KHG </span>
+                                    <span class="md-subhead">{{item.passanger.address}} </span>
                                     <span class="md-subhead">&nbsp; to </span>
-                                    <span class="md-subhead">Airport </span>
+                                    <span class="md-subhead">{{item.dest_address}} </span>
                                 </div>
 
                             </div>

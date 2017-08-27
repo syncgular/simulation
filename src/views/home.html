@@ -28,7 +28,8 @@
                 <div class="md-list-item-text">
                     <h3>{{item.name}}</h3>
                     <p class=" md-caption">{{item.mobile}}</p>
-                    <p class=" md-caption">{{item.address}}</p>
+                    <p ng-if="item.type=='C'" class=" md-caption">{{item.address}}</p>
+                    <p ng-if="item.type=='D'" class=" md-caption">{{item.cab}}</p>
                 </div>
 
                 <div class="md-secondary">

@@ -17,39 +17,52 @@ app.service("dataService", [function() {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
+    this.random_text = function(min_length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        for (var i = 0; i < min_length; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
+        return text;
+    }
+
+
     this.icon_list = [
         "apple", "whatsapp", "twitter", "amazon", "facebook", "linkedin", "hangouts", "windows", "backup",
         "favorite", "thumb_up", "watch_later", "add_alert", "album", "insert_emoticon", "monetization_on",
         "cloud", "color_lens"
     ];
     this.cutomer_type = [{ "name": "Customer" }, { "name": "Driver" }];
+
     this.sample_customer_list = [
-        { "name": "Santosh Indian", "type": "Cutomer" },
-        { "name": "Vivek Singh", "type": "Cutomer" },
-        { "name": "Sunil Mondal", "type": "Cutomer" },
-        { "name": "Shashikant Yadav", "type": "Cutomer" },
-        { "name": "Vipin Yadav", "type": "Cutomer" },
-        { "name": "Harihar Khobragade", "type": "Cutomer" },
-        { "name": "Rajendra Kotulkar", "type": "Cutomer" },
-        { "name": "Dipak Mali", "type": "Cutomer" },
-        { "name": "Jitu Jitu", "type": "Cutomer" },
-        { "name": "Jyoti Krishna", "type": "Cutomer" },
-        { "name": "Ved Prakash Singh", "type": "Cutomer" },
-        { "name": "Arvind Jha", "type": "Cutomer" },
-        { "name": "Suman Kumar", "type": "Cutomer" }
+        { "name": "Santosh Indian", "type": "C" },
+        { "name": "Vivek Singh", "type": "C" },
+        { "name": "Sunil Mondal", "type": "C" },
+        { "name": "Shashikant Yadav", "type": "C" },
+        { "name": "Vipin Yadav", "type": "C" },
+        { "name": "Harihar Khobragade", "type": "C" },
+        { "name": "Rajendra Kotulkar", "type": "C" },
+        { "name": "Dipak Mali", "type": "C" },
+        { "name": "Jitu Jitu", "type": "C" },
+        { "name": "Jyoti Krishna", "type": "C" },
+        { "name": "Ved Prakash Singh", "type": "C" },
+        { "name": "Arvind Jha", "type": "C" },
+        { "name": "Suman Kumar", "type": "C" }
     ];
 
     this.sample_driver_list = [
-        { "name": "Umesh Ghadge", "type": "Driver" },
-        { "name": "Nishar Hussain", "type": "Driver" },
-        { "name": "Mahesh Singh", "type": "Driver" },
-        { "name": "Suresh Babu", "type": "Driver" },
-        { "name": "Raju Bhaiya", "type": "Driver" },
-        { "name": "Pawan Singh", "type": "Driver" },
-        { "name": "Jigar Sharma", "type": "Driver" },
-        { "name": "Ram Babu", "type": "Driver" },
-        { "name": "Rajesh Kakde", "type": "Driver" },
-        { "name": "Rahul CM", "type": "Driver" },
+        { "name": "Umesh Ghadge", "type": "D" },
+        { "name": "Nishar Hussain", "type": "D" },
+        { "name": "Mahesh Singh", "type": "D" },
+        { "name": "Suresh Babu", "type": "D" },
+        { "name": "Raju Bhaiya", "type": "D" },
+        { "name": "Pawan Singh", "type": "D" },
+        { "name": "Jigar Sharma", "type": "D" },
+        { "name": "Ram Babu", "type": "D" },
+        { "name": "Rajesh Kakde", "type": "D" },
+        { "name": "Rahul CM", "type": "D" },
     ];
 
     this.address_list = [
@@ -82,6 +95,23 @@ app.service("dataService", [function() {
 
     ];
 
+    this.sample_destination_list = [
+        { "address": "Domestic Airport", "city": "Mumbai", "fare": 800 },
+        { "address": "Bandra Stn", "city": "Mumbai", "fare": 700 },
+        { "address": "Mumbai Central", "city": "Mumbai", "fare": 800 },
+
+        { "address": "CST Terminus", "city": "Mumbai", "fare": 700 },
+        { "address": "Bandra Kurla Complex", "city": "Mumbai", "fare": 700 },
+        { "address": "Andheri", "city": "Mumbai", "fare": 800 },
+
+        { "address": "Kurla", "city": "Mumbai", "fare": 600 },
+        { "address": "Marine Drive", "city": "Mumbai", "fare": 800 },
+        { "address": "Gateway of India", "city": "Mumbai", "fare": 800 },
+
+        { "address": "International Airport", "city": "Mumbai", "fare": 800 },
+        { "address": "Vashi", "city": "Mumbai", "fare": 250 },
+    ];
+
 
     this.get_contact_list = function() {
         let sthis = this;
@@ -99,13 +129,23 @@ app.service("dataService", [function() {
 
         _.each(item_list, function(item) {
 
-            var rand_icon = sthis.getRandomInt(0, 17);
-            item["icon"] = sthis.icon_list[rand_icon];
+            if (item.type.toLowerCase() == 'd') {
+                item["icon"] = "local_taxi";
+
+                var area_code = sthis.getRandomInt(10, 46);
+                var area_text = sthis.random_text(2);
+                var cab_number = sthis.getRandomInt(999, 9999);
+                item["cab"] = `MH${area_code}-${area_text} ${cab_number}`
+            } else {
+                var rand_icon = sthis.getRandomInt(0, sthis.icon_list.length);
+                item["icon"] = sthis.icon_list[rand_icon];
+            }
+
 
             var rand_mob = sthis.getRandomInt(7676767676, 9999999999);
             item["mobile"] = rand_mob;
 
-            var rand_address = sthis.getRandomInt(0, 17);
+            var rand_address = sthis.getRandomInt(0, sthis.address_list.length);
             var rand_address_obj = sthis.address_list[rand_address];
             for (var key in rand_address_obj) {
                 item[key] = rand_address_obj[key];
@@ -117,6 +157,21 @@ app.service("dataService", [function() {
         return new_item_list;
     }
 
+
+    this.get_customer_time_line = function() {
+        var time_line_list = [];
+
+        var rand_time_line = sthis.getRandomInt(0, this.sample_destination_list.length);
+        for (var i = 0; i < rand_time_line; i++) {
+            var time_line = {};
+
+
+
+            time_line_list.push(time_line);
+        }
+
+        return time_line_list;
+    };
 
     this.get_travel_detal_list = function() {
         let ref_traverl = {

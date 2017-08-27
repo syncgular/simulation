@@ -84,28 +84,26 @@ app.service("dataService", [function() {
 
 
     this.get_contact_list = function() {
-        var contact_list_original = [
-            { "id": 1, "name": "Santosh Indian", "type": "Customer", "mobile": "9323791976", "icon": "apple", "selected": true, "last_pickup_date": new Date(), "address": "Kedndirya Vivhar", "sector": "3", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 2, "name": "Vivek Singh", "type": "Driver", "mobile": "9323791976", "icon": "whatsapp", "last_pickup_date": new Date(), "address": "Hiranandai", "sector": "4", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 3, "name": "Sunil Mondal", "type": "Customer", "mobile": "9323791976", "icon": "twitter", "last_pickup_date": new Date(), "address": "Hirnandani", "sector": "5", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 4, "name": "Harihar Khobragade", "type": "Customer", "mobile": "9323791976", "icon": "amazon", "last_pickup_date": new Date(), "address": "Navrant", "sector": "3", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 5, "name": "Vipin Yadav", "type": "Customer", "mobile": "9323791976", "icon": "facebook", "last_pickup_date": new Date(), "address": "Utstav Chaok", "sector": "4", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 6, "name": "Shashi Yadav", "type": "Customer", "mobile": "9323791976", "icon": "linkedin", "last_pickup_date": new Date(), "address": "Shilp Chaok", "sector": "5", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Krish Singh", "type": "Customer", "mobile": "9323791976", "icon": "hangouts", "last_pickup_date": new Date(), "address": "Kopra Gaon", "sector": "3", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Jitu Jitu", "type": "Customer", "mobile": "9323791976", "icon": "windows", "last_pickup_date": new Date(), "address": "Belpada", "sector": "4", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Dipak Mali", "type": "Customer", "mobile": "9323791976", "icon": "backup", "last_pickup_date": new Date(), "address": "Belpada", "sector": "5", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Suchita Dabir", "type": "Customer", "mobile": "9323791976", "icon": "favorite", "last_pickup_date": new Date(), "address": "Hiranandai", "sector": "3", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Ashwitha Anchan", "type": "Customer", "mobile": "9323791976", "icon": "thumb_up", "last_pickup_date": new Date(), "address": "Kedndirya Vivhar", "sector": "4", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Kharghar Khg", "type": "Customer", "mobile": "9323791976", "icon": "watch_later", "last_pickup_date": new Date(), "address": "Navrang", "sector": "30", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Sachin Tendulkar", "type": "Customer", "mobile": "9323791976", "icon": "add_alert", "last_pickup_date": new Date(), "address": "Navrang", "sector": "13", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Saurav Gangulay", "type": "Customer", "mobile": "9323791976", "icon": "album", "last_pickup_date": new Date(), "address": "Kedndirya Vivhar", "sector": "11", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Belapur BLB", "type": "Customer", "mobile": "9323791976", "icon": "insert_emoticon", "last_pickup_date": new Date(), "address": "Raghunath Vihar", "sector": "12", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Rahul Yadav", "type": "Customer", "mobile": "9323791976", "icon": "monetization_on", "last_pickup_date": new Date(), "address": "Raghunath Vivhar", "sector": "14", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Dhoni MS", "type": "Customer", "mobile": "9323791976", "icon": "cloud", "last_pickup_date": new Date(), "address": "Rail Vivhar", "sector": "13", "city": "Kharghar", "state": "Maharashtra" },
-            { "id": 7, "name": "Kohli Virat", "type": "Customer", "mobile": "9323791976", "icon": "color_lens", "last_pickup_date": new Date(), "address": "KV", "sector": "7", "city": "Kharghar", "state": "Maharashtra" },
-        ];
+        let sthis = this;
+        var customer_list = [];
+        _.each(sthis.sample_customer_list, function(customer) {
 
-        return contact_list_original;
+            var rand_icon = sthis.getRandomInt(0, 17);
+            customer["icon"] = sthis.icon_list[rand_icon];
+
+            var rand_mob = sthis.getRandomInt(7676767676, 9999999999);
+            customer["mobile"] = rand_mob;
+
+            var rand_address = sthis.getRandomInt(0, 17);
+            var rand_address_obj = sthis.address_list[rand_address];
+            for (var key in rand_address_obj) {
+                customer[key] = rand_address_obj[key];
+            }
+
+            customer_list.push(customer);
+        });
+
+        return customer_list;
     };
 
 

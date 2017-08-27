@@ -85,26 +85,37 @@ app.service("dataService", [function() {
 
     this.get_contact_list = function() {
         let sthis = this;
-        var customer_list = [];
-        _.each(sthis.sample_customer_list, function(customer) {
+        var customer_list = this.util_prepare_customer_driver_data(this.sample_customer_list);
+        var driver_list = this.util_prepare_customer_driver_data(this.sample_driver_list);
+
+        var concated_list = customer_list.concat(driver_list);
+        return concated_list;
+    };
+
+
+    this.util_prepare_customer_driver_data = function(item_list) {
+        let sthis = this;
+        let new_item_list = [];
+
+        _.each(item_list, function(item) {
 
             var rand_icon = sthis.getRandomInt(0, 17);
-            customer["icon"] = sthis.icon_list[rand_icon];
+            item["icon"] = sthis.icon_list[rand_icon];
 
             var rand_mob = sthis.getRandomInt(7676767676, 9999999999);
-            customer["mobile"] = rand_mob;
+            item["mobile"] = rand_mob;
 
             var rand_address = sthis.getRandomInt(0, 17);
             var rand_address_obj = sthis.address_list[rand_address];
             for (var key in rand_address_obj) {
-                customer[key] = rand_address_obj[key];
+                item[key] = rand_address_obj[key];
             }
 
-            customer_list.push(customer);
+            new_item_list.push(item);
         });
 
-        return customer_list;
-    };
+        return new_item_list;
+    }
 
 
     this.get_travel_detal_list = function() {

@@ -48,7 +48,7 @@
         <md-toolbar layout="row">
             <div class="md-toolbar-tools">
                 <div flex="40">{{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}</div>
-                <div flex>{{refjson.selected_contact.address}} - {{refjson.selected_contact.city}}</div>
+                <!--<div flex>{{refjson.selected_contact.address}} - {{refjson.selected_contact.city}}</div>-->
             </div>
         </md-toolbar>
 
@@ -60,76 +60,77 @@
         </md-card>
         -->
 
-        <div>
-            <md-content flex-offset="5" flex="75" style="height:82vh; overflow-y:scroll ">
-                <md-list-item ng-repeat="item in refjson.selected_contact.time_line_list" ng-click="null">
-                    <md-card flex>
-                        <md-card-content>
-                            <div layout="row">
-                                <div flex="10">
-                                    <md-button class="md-fab  md-mini" ng-class="{'md-primary': refjson.selected_contact.type =='C'}" aria-label="Short Name">
-                                        <span ng-if="refjson.selected_contact.type =='D'">{{item.passanger.icon_aplphabates}}</span>
-                                        <span ng-if="refjson.selected_contact.type =='C'">{{item.driver.icon_aplphabates}}</span>
-                                    </md-button>
-                                </div>
-
-                                <div flex="25">
-                                    <div ng-if="refjson.selected_contact.type=='C'">
-                                        <span class="md-title">{{item.driver.name}}</span><br/>
-                                        <span class="md-subhead">{{item.driver.cab}}</span><br/>
-                                    </div>
-                                    <div ng-if="refjson.selected_contact.type=='D'">
-                                        <span class="md-title">{{item.passanger.name}}</span><br/>
-                                        <span class="md-subhead">{{item.passanger.mobile}}</span><br/>
-                                    </div>
-                                </div>
-
-                                <div flex-offset="10" flex="35">
-                                    <div layout="column">
-                                        <span class="md-subhead">{{item.passanger.address}} </span>
-                                        <span class="md-subhead">&nbsp; to </span>
-                                        <span class="md-subhead">{{item.dest_address}} </span>
+        <div layout="row">
+            <div flex="70">
+                <md-content flex-offset="5" flex="95" style="height:88vh; overflow-y:scroll ">
+                    <md-list-item ng-repeat="item in refjson.selected_contact.time_line_list" ng-click="null">
+                        <md-card flex>
+                            <md-card-content>
+                                <div layout="row">
+                                    <div flex="10">
+                                        <md-button class="md-fab  md-mini" ng-class="{'md-primary': refjson.selected_contact.type =='C'}" aria-label="Short Name">
+                                            <span ng-if="refjson.selected_contact.type =='D'">{{item.passanger.icon_aplphabates}}</span>
+                                            <span ng-if="refjson.selected_contact.type =='C'">{{item.driver.icon_aplphabates}}</span>
+                                        </md-button>
                                     </div>
 
-                                </div>
+                                    <div flex="25">
+                                        <div ng-if="refjson.selected_contact.type=='C'">
+                                            <span class="md-title">{{item.driver.name}}</span><br/>
+                                            <span class="md-subhead">{{item.driver.cab}}</span><br/>
+                                        </div>
+                                        <div ng-if="refjson.selected_contact.type=='D'">
+                                            <span class="md-title">{{item.passanger.name}}</span><br/>
+                                            <span class="md-subhead">{{item.passanger.mobile}}</span><br/>
+                                        </div>
+                                    </div>
 
-                                <div>
-                                    <div layout="column">
-                                        <span style="font-size:12px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
-                                        <!--<span>{{item.booking_time | date:'HH:mm'}}</span>-->
+                                    <div flex-offset="10" flex="35">
+                                        <div layout="column">
+                                            <span class="md-subhead">{{item.passanger.address}} </span>
+                                            <span class="md-subhead">&nbsp; to </span>
+                                            <span class="md-subhead">{{item.dest_address}} </span>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <div layout="column">
+                                            <span style="font-size:12px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
+                                            <!--<span>{{item.booking_time | date:'HH:mm'}}</span>-->
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </md-card-content>
+                            </md-card-content>
 
-                    </md-card>
-                </md-list-item>
-            </md-content>
+                        </md-card>
+                    </md-list-item>
+                </md-content>
+            </div>
 
-            <md-card flex-offset="5" flex="75" class="md-primary">
+            <div flex="30">
 
-                <md-toolbar>
-                    <div class="md-toolbar-tools">
-                        <div flex="10">
-                            <md-button aria-label="send" class="md-icon-button">
-                                <ng-md-icon icon="send" size="25" style="fill: white"></ng-md-icon>
-                            </md-button>
+
+                <md-list style="height:88vh; overflow-y:scroll ">
+                    <!-- List item #1 -->
+                    <md-list-item class="md-2-line" ng-repeat="item in refjson.taxi_stand_list">
+                        <ng-md-icon icon="local_taxi" class="md-avatar" size="40" style="fill: #ea734d"></ng-md-icon>
+
+
+                        <div class="md-list-item-text">
+                            <h3>{{item.name}}</h3>
+                            <p class=" md-caption">{{item.mobile}}</p>
                         </div>
 
-                        <div flex-offset="20" flex="50">
-                            <h2> ADD NEW ENTRY </h2>
+                        <div class="md-secondary">
+                            <div class=" md-caption">{{item.city}}</div>
                         </div>
 
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+            </div>
 
-                        <div flex layout="row" layout-align="end center">
-                            <md-button aria-label="add_circle" class="md-icon-button">
-                                <ng-md-icon icon="add_circle" size="30" style="fill: white"></ng-md-icon>
-                            </md-button>
-                        </div>
-
-                    </div>
-                </md-toolbar>
-            </md-card>
         </div>
 
     </div>

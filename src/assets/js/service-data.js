@@ -156,6 +156,17 @@ app.service("dataService", [function() {
                 item[key] = rand_address_obj[key];
             }
 
+            var icon_aplphabates = "";
+            var split_arr = item.name.split(/\s+/) || [];
+            for (var i = 0; i < split_arr.length; i++) {
+
+                icon_aplphabates += split_arr[i].charAt(0);
+                if (i == 1) {
+                    break;
+                }
+            }
+            item["icon_aplphabates"] = icon_aplphabates;
+
             new_item_list.push(item);
         });
 

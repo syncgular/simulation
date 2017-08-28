@@ -24,9 +24,6 @@ app.controller("home-controller", ["$scope", "dataService", function($scope, dat
         item.selected = true;
 
         $scope.refjson.selected_contact = item;
-
-        item.time_line_list = _.sortBy(item.time_line_list, 'booking_time');
-        item.time_line_list = item.time_line_list.reverse();
     };
 
 

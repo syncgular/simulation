@@ -187,8 +187,8 @@ app.service("dataService", [function() {
             }
 
 
-            var dmonth = this.getRandomInt(1, 8);
-            var ddate = this.getRandomInt(1, 28);
+            var dmonth = this.getRandomInt(8, 8);
+            var ddate = this.getRandomInt(20, 28);
             var dhour = this.getRandomInt(1, 23);
             var dmin = this.getRandomInt(0, 59);
             var dstr = `2017-${dmonth}-${ddate} ${dhour}:${dmin}`;
@@ -201,10 +201,12 @@ app.service("dataService", [function() {
             // PUSH TO DRIVER TIME LINE
             rand_driver_obj.time_line_list = rand_driver_obj.time_line_list || [];
             rand_driver_obj.time_line_list.push(time_line);
+
+            rand_driver_obj.time_line_list = _.sortBy(rand_driver_obj.time_line_list, 'booking_time');
+            rand_driver_obj.time_line_list = rand_driver_obj.time_line_list.reverse();
         }
 
         time_line_list = _.sortBy(time_line_list, 'booking_time');
-
         customer.time_line_list = time_line_list.reverse();
     };
 

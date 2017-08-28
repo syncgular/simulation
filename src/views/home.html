@@ -58,68 +58,75 @@
         </md-card>
         -->
 
-        <md-content flex-offset="5" flex="75" style="height:82vh; overflow-y:scroll ">
-            <md-list-item ng-repeat="item in refjson.selected_contact.time_line_list" ng-click="null">
-                <md-card flex>
-                    <md-card-content>
-                        <div layout="row">
-                            <div flex="10">
-                                <ng-md-icon icon="directions_car" class="md-avatar" size="70" style="fill:#ea734d"></ng-md-icon>
-                            </div>
-
-                            <div flex="25">
-                                <span class="md-title">{{item.driver.name}}</span><br/>
-                                <span class="md-subhead">{{item.driver.cab}}</span><br/>
-                                <!--<span>Fare - {{item.fare}}</span>-->
-                            </div>
-
-                            <div flex-offset="10" flex="35">
-                                <div layout="column">
-                                    <span class="md-subhead">{{item.passanger.address}} </span>
-                                    <span class="md-subhead">&nbsp; to </span>
-                                    <span class="md-subhead">{{item.dest_address}} </span>
+        <div>
+            <md-content flex-offset="5" flex="75" style="height:82vh; overflow-y:scroll ">
+                <md-list-item ng-repeat="item in refjson.selected_contact.time_line_list" ng-click="null">
+                    <md-card flex>
+                        <md-card-content>
+                            <div layout="row">
+                                <div flex="10">
+                                    <ng-md-icon ng-if="refjson.selected_contact.type=='C'" icon="local_taxi" class="md-avatar" size="70" style="fill:#ea734d"></ng-md-icon>
+                                    <ng-md-icon ng-if="refjson.selected_contact.type=='D'" icon="person" class="md-avatar" size="70" style="fill:#ea734d"></ng-md-icon>
                                 </div>
 
-                            </div>
+                                <div flex="25">
+                                    <div ng-if="refjson.selected_contact.type=='C'">
+                                        <span class="md-title">{{item.driver.name}}</span><br/>
+                                        <span class="md-subhead">{{item.driver.cab}}</span><br/>
+                                    </div>
+                                    <div ng-if="refjson.selected_contact.type=='D'">
+                                        <span class="md-title">{{item.passanger.name}}</span><br/>
+                                        <span class="md-subhead">{{item.passanger.mobile}}</span><br/>
+                                    </div>
+                                </div>
 
-                            <div>
-                                <div layout="column">
-                                    <span style="font-size:12px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
-                                    <!--<span>{{item.booking_time | date:'HH:mm'}}</span>-->
+                                <div flex-offset="10" flex="35">
+                                    <div layout="column">
+                                        <span class="md-subhead">{{item.passanger.address}} </span>
+                                        <span class="md-subhead">&nbsp; to </span>
+                                        <span class="md-subhead">{{item.dest_address}} </span>
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <div layout="column">
+                                        <span style="font-size:12px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
+                                        <!--<span>{{item.booking_time | date:'HH:mm'}}</span>-->
+                                    </div>
                                 </div>
                             </div>
+                        </md-card-content>
+
+                    </md-card>
+                </md-list-item>
+            </md-content>
+
+            <md-card flex-offset="5" flex="75" class="md-primary">
+
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <div flex="10">
+                            <md-button aria-label="send" class="md-icon-button">
+                                <ng-md-icon icon="send" size="25" style="fill: white"></ng-md-icon>
+                            </md-button>
                         </div>
-                    </md-card-content>
 
-                </md-card>
-            </md-list-item>
-        </md-content>
+                        <div flex-offset="20" flex="50">
+                            <h2> ADD NEW ENTRY </h2>
+                        </div>
 
 
-        <md-card flex-offset="5" flex="75" class="md-primary">
+                        <div flex layout="row" layout-align="end center">
+                            <md-button aria-label="add_circle" class="md-icon-button">
+                                <ng-md-icon icon="add_circle" size="30" style="fill: white"></ng-md-icon>
+                            </md-button>
+                        </div>
 
-            <md-toolbar>
-                <div class="md-toolbar-tools">
-                    <div flex="10">
-                        <md-button aria-label="send" class="md-icon-button">
-                            <ng-md-icon icon="send" size="25" style="fill: white"></ng-md-icon>
-                        </md-button>
                     </div>
+                </md-toolbar>
+            </md-card>
+        </div>
 
-                    <div flex-offset="20" flex="50">
-                        <h2> ADD NEW ENTRY </h2>
-                    </div>
-
-
-                    <div flex layout="row" layout-align="end center">
-                        <md-button aria-label="add_circle" class="md-icon-button">
-                            <ng-md-icon icon="add_circle" size="30" style="fill: white"></ng-md-icon>
-                        </md-button>
-                    </div>
-
-                </div>
-            </md-toolbar>
-
-        </md-card>
     </div>
 </div>

@@ -142,7 +142,7 @@ app.service("dataService", [function() {
                 var cab_number = sthis.getRandomInt(999, 9999);
                 item["cab"] = `MH${area_code}-${area_text} ${cab_number}`
             } else {
-                var rand_icon = sthis.getRandomInt(0, sthis.icon_list.length);
+                var rand_icon = sthis.getRandomInt(0, sthis.icon_list.length - 1);
                 item["icon"] = sthis.icon_list[rand_icon];
             }
 
@@ -150,7 +150,7 @@ app.service("dataService", [function() {
             var rand_mob = sthis.getRandomInt(7676767676, 9999999999);
             item["mobile"] = rand_mob;
 
-            var rand_address = sthis.getRandomInt(0, sthis.address_list.length);
+            var rand_address = sthis.getRandomInt(0, sthis.address_list.length - 1);
             var rand_address_obj = sthis.address_list[rand_address];
             for (var key in rand_address_obj) {
                 item[key] = rand_address_obj[key];
@@ -187,7 +187,7 @@ app.service("dataService", [function() {
             }
 
 
-            var dmonth = this.getRandomInt(1, 12);
+            var dmonth = this.getRandomInt(1, 8);
             var ddate = this.getRandomInt(1, 28);
             var dhour = this.getRandomInt(1, 23);
             var dmin = this.getRandomInt(0, 59);
@@ -203,7 +203,9 @@ app.service("dataService", [function() {
             rand_driver_obj.time_line_list.push(time_line);
         }
 
-        customer.time_line_list = time_line_list;
+        time_line_list = _.sortBy(time_line_list, 'booking_time');
+
+        customer.time_line_list = time_line_list.reverse();
     };
 
 

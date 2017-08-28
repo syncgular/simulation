@@ -23,7 +23,9 @@
         <md-list style="height:84vh; overflow-y:scroll ">
             <!-- List item #1 -->
             <md-list-item class="md-3-line" ng-class="{selectedIndex: item.selected===true}" ng-repeat="item in refjson.contact_list" ng-click="left_nav_list_user_item_click(item)">
-                <ng-md-icon icon="{{item.icon}}" class="md-avatar" size="40" style="fill: #ea734d"></ng-md-icon>
+                <md-button class="md-fab  md-mini" ng-class="{'md-primary': item.type=='D'}" aria-label="Short Name">
+                    AB
+                </md-button>
 
                 <div class="md-list-item-text">
                     <h3>{{item.name}}</h3>
@@ -65,10 +67,9 @@
                         <md-card-content>
                             <div layout="row">
                                 <div flex="10">
-                                    <md-button class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                    <md-button class="md-fab  md-mini" ng-class="{'md-primary': refjson.selected_contact.type =='C'}" aria-label="Short Name">
                                         AB
                                     </md-button>
-
                                 </div>
 
                                 <div flex="25">

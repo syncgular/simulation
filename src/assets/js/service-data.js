@@ -122,6 +122,17 @@ app.service("dataService", [function() {
             sthis.populate_customer_driver_time_line(customer, driver_list);
         });
 
+
+        // DRIVER TIMELINE 
+        _.each(driver_list, function(item) {
+            item.time_line_list = _.sortBy(item.time_line_list, 'booking_time');
+            item.time_line_list = item.time_line_list.reverse();
+
+            // USED IN TAXI STAND LOGIC
+            var temp_timeline = item.time_line_list[0];
+            item.last_pickup_time = temp_timeline.booking_time;
+        });
+
         var concated_list = customer_list.concat(driver_list);
         console.log(concated_list)
         return concated_list;
@@ -212,9 +223,6 @@ app.service("dataService", [function() {
             // PUSH TO DRIVER TIME LINE
             rand_driver_obj.time_line_list = rand_driver_obj.time_line_list || [];
             rand_driver_obj.time_line_list.push(time_line);
-
-            rand_driver_obj.time_line_list = _.sortBy(rand_driver_obj.time_line_list, 'booking_time');
-            rand_driver_obj.time_line_list = rand_driver_obj.time_line_list.reverse();
         }
 
         time_line_list = _.sortBy(time_line_list, 'booking_time');
@@ -222,5 +230,12 @@ app.service("dataService", [function() {
     };
 
 
+    this.taxi_stand_list = function(contact_list) {
+        var temp_driver_list = _.where(contact_list, { "type": "D" });
+        var taxi_stand_list = _.sortBy(temp_driver_list, "last_pickup_time");
+
+        console.log(taxi_stand_list);
+        return taxi_stand_list;
+    };
 
 }])

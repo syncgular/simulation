@@ -3,6 +3,7 @@ var app = angular.module("app");
 app.controller("home-controller", ["$scope", "dataService", function($scope, dataService) {
 
     var contact_list = dataService.get_contact_list();
+    var taxi_stand_list = dataService.taxi_stand_list(contact_list);
 
     var refjson = {
         "title": "Hello Angular Material",
@@ -10,6 +11,8 @@ app.controller("home-controller", ["$scope", "dataService", function($scope, dat
 
         "contact_list": angular.copy(contact_list),
         "selected_contact": contact_list[0],
+
+        "taxi_stand_list": taxi_stand_list
     };
     $scope.refjson = refjson;
 

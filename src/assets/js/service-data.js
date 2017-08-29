@@ -208,7 +208,7 @@ app.service("dataService", [function() {
             }
 
             var dmonth = this.getRandomInt(8, 8);
-            var ddate = this.getRandomInt(26, 28);
+            var ddate = this.getRandomInt(moment().date() - 2, moment().date() - 1);
             var dhour = this.getRandomInt(1, 23);
             var dmin = this.getRandomInt(0, 59);
             var dstr = `2017-${dmonth}-${ddate} ${dhour}:${dmin}`;

@@ -125,7 +125,7 @@
 
                 <md-list style="height:80vh; overflow-y:scroll ">
                     <!-- List item #1 -->
-                    <md-list-item class="md-2-line" ng-repeat="item in refjson.taxi_stand_list">
+                    <md-list-item class="md-2-line" ng-repeat="item in refjson.taxi_stand_list" ng-click="null">
                         <ng-md-icon icon="local_taxi" class="md-avatar" size="40" style="fill: #ea734d"></ng-md-icon>
 
                         <div class="md-list-item-text">
@@ -136,7 +136,6 @@
                         <div class="md-secondary">
                             <div class=" md-caption">{{item.waiting_since}}</div>
                         </div>
-
                         <md-divider></md-divider>
                     </md-list-item>
                 </md-list>

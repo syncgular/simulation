@@ -1,6 +1,6 @@
 var app = angular.module("app");
 
-app.controller("home-controller", ["$scope", "dataService", function($scope, dataService) {
+app.controller("home-controller", ["$scope", "$timeout", "dataService", function($scope, $timeout, dataService) {
 
     var contact_list = dataService.get_contact_list();
     var taxi_stand_list = dataService.taxi_stand_list(contact_list);
@@ -46,5 +46,43 @@ app.controller("home-controller", ["$scope", "dataService", function($scope, dat
         $scope.refjson.contact_list = filter_contact_list;
     };
 
+
+    $scope.taxi_stand_wait_time_refresh = function() {
+
+        _.each($scope.refjson.taxi_stand_list, function(item) {
+            var str = "";
+
+            var duration = moment.duration(moment().diff(item.last_pickup_time));
+            var asDays = Math.floor(duration.asDays());
+            if (asDays == 0) {
+                var asHours = Math.floor(duration.asHours());
+                if (asHours == 0) {
+                    var asMinutes = Math.floor(duration.asMinutes());
+                    if (asMinutes > 0) {
+                        str = `Since ${asMinutes} minute`;
+                    }
+                } else {
+                    if (asHours > 0) {
+                        str = `Since ${asHours} hour`;
+                    }
+                }
+            } else {
+                if (asDays > 0) {
+                    str = `Since ${asDays} day`;
+                }
+            }
+
+            item.waiting_since = str;
+
+            console.log(str);
+        });
+
+
+        // SCHEDULE EVERY MINUTE
+        $timeout(function() {
+            $scope.taxi_stand_wait_time_refresh();
+        }, 60000);
+    };
+    $scope.taxi_stand_wait_time_refresh();
 
 }]);

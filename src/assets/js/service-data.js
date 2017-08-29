@@ -200,7 +200,6 @@ app.service("dataService", [function() {
             var rand_driver_obj = driver_list[rand_driver];
             time_line["driver"] = rand_driver_obj;
 
-
             // RANDOM DESTINATION
             var rand_dest = this.getRandomInt(0, this.sample_destination_list.length - 1);
             var rand_dest_obj = this.sample_destination_list[rand_dest];
@@ -208,9 +207,8 @@ app.service("dataService", [function() {
                 time_line[key] = rand_dest_obj[key];
             }
 
-
             var dmonth = this.getRandomInt(8, 8);
-            var ddate = this.getRandomInt(20, 28);
+            var ddate = this.getRandomInt(26, 28);
             var dhour = this.getRandomInt(1, 23);
             var dmin = this.getRandomInt(0, 59);
             var dstr = `2017-${dmonth}-${ddate} ${dhour}:${dmin}`;
@@ -234,7 +232,6 @@ app.service("dataService", [function() {
         var temp_driver_list = _.where(contact_list, { "type": "D" });
         var taxi_stand_list = _.sortBy(temp_driver_list, "last_pickup_time");
 
-        console.log(taxi_stand_list);
         return taxi_stand_list;
     };
 

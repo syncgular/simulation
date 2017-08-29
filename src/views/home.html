@@ -2,6 +2,14 @@
     .selectedIndex {
         background: lightskyblue;
     }
+    /* https://github.com/klarsys/angular-material-icons/issues/15 */
+    
+    ng-md-icon {
+        fill: currentColor;
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 1;
+    }
 </style>
 
 
@@ -110,20 +118,19 @@
 
             <div flex="30">
                 <div layout="column">
-                    <md-button class="md-raised md-primary">Taxi Stand</md-button>
+                    <md-button class="md-raised md-primary">Taxi Stand
+                        <ng-md-icon icon="add_circle_outline" class="md-avatar" size="24"></ng-md-icon>
+                    </md-button>
                 </div>
 
-
-
-                <md-list style="height:88vh; overflow-y:scroll ">
+                <md-list style="height:80vh; overflow-y:scroll ">
                     <!-- List item #1 -->
                     <md-list-item class="md-2-line" ng-repeat="item in refjson.taxi_stand_list">
                         <ng-md-icon icon="local_taxi" class="md-avatar" size="40" style="fill: #ea734d"></ng-md-icon>
 
-
                         <div class="md-list-item-text">
-                            <h3>{{item.name}}</h3>
-                            <p class=" md-caption">{{item.mobile}}</p>
+                            <span style="font-weight:bold">{{item.cab}}</span>
+                            <p class=" md-caption">{{item.name}}</p>
                         </div>
 
                         <div class="md-secondary">

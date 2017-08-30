@@ -246,6 +246,7 @@ app.service("dataService", [function() {
         });
 
         home_time_line_list = _.sortBy(home_time_line_list, "booking_time");
+        home_time_line_list = home_time_line_list.reverse();
         return home_time_line_list;
     };
 

@@ -21,21 +21,42 @@
             </div>
 
             <div flex-offset="10" flex="35">
+
+                <!--
                 <div layout="column">
                     <span class="md-subhead">{{item.passanger.address}} </span>
                     <span class="md-subhead">&nbsp; to </span>
                     <span class="md-subhead">{{item.dest_address}} </span>
                 </div>
-
+                -->
             </div>
 
             <div>
                 <div layout="column">
-                    <span style="font-size:12px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
-                    <!--<span>{{item.booking_time | date:'HH:mm'}}</span>-->
+                    <span>{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
+                    <span class="md-headline ">
+                        <ng-md-icon icon="check_box" class="md-avatar" style="fill:green; margin-top:10px" size="40"></ng-md-icon> 
+                    </span>
                 </div>
             </div>
         </div>
     </md-card-content>
+
+    <md-card-actions layout="row" layout-align="start center">
+        <md-chips>
+            <md-chip class="md-caption">
+                <ng-md-icon icon="place" class="md-avatar" size="18"></ng-md-icon>
+                {{item.passanger.address}}
+            </md-chip>
+            <md-chip class="md-caption">
+                <ng-md-icon icon="pin_drop" class="md-avatar" size="18"></ng-md-icon>
+                {{item.dest_address}}
+            </md-chip>
+            <md-chip class="md-caption">
+                <ng-md-icon icon="attach_money" class="md-avatar" size="18"></ng-md-icon>
+                Fare - {{item.fare}}
+            </md-chip>
+        </md-chips>
+    </md-card-actions>
 
 </md-card>

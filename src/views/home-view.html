@@ -42,10 +42,22 @@
 
     <md-card-actions layout="row" layout-align="start center">
         <md-chips>
-            <md-chip class="md-caption">{{item.passanger.name}}</md-chip>
-            <md-chip class="md-caption">{{item.passanger.address}}</md-chip>
-            <md-chip class="md-caption">{{item.dest_address}}</md-chip>
-            <md-chip class="md-caption">Fare - 500</md-chip>
+            <md-chip class="md-caption">
+                <ng-md-icon icon="person" class="md-avatar" size="18"></ng-md-icon>
+                {{item.passanger.name}}
+            </md-chip>
+            <md-chip class="md-caption">
+                <ng-md-icon icon="place" class="md-avatar" size="18"></ng-md-icon>
+                {{item.passanger.address}}
+            </md-chip>
+            <md-chip class="md-caption">
+                <ng-md-icon icon="pin_drop" class="md-avatar" size="18"></ng-md-icon>
+                {{item.dest_address}}
+            </md-chip>
+            <md-chip class="md-caption">
+                <ng-md-icon icon="attach_money" class="md-avatar" size="18"></ng-md-icon>
+                Fare - 500
+            </md-chip>
         </md-chips>
     </md-card-actions>
 </md-card>

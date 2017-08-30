@@ -235,4 +235,18 @@ app.service("dataService", [function() {
         return taxi_stand_list;
     };
 
+
+    this.home_time_line_list = function(contact_list) {
+        var temp_driver_list = _.where(contact_list, { "type": "D" });
+
+        var home_time_line_list = [];
+        _.each(temp_driver_list, function(item) {
+
+            home_time_line_list = home_time_line_list.concat(item.time_line_list);
+        });
+
+        home_time_line_list = _.sortBy(home_time_line_list, "booking_time");
+        return home_time_line_list;
+    };
+
 }])

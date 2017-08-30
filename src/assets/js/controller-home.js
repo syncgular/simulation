@@ -4,6 +4,7 @@ app.controller("home-controller", ["$scope", "$timeout", "dataService", function
 
     var contact_list = dataService.get_contact_list();
     var taxi_stand_list = dataService.taxi_stand_list(contact_list);
+    var home_time_line_list = dataService.home_time_line_list(contact_list);
 
     var refjson = {
         "title": "Hello Angular Material",
@@ -12,7 +13,8 @@ app.controller("home-controller", ["$scope", "$timeout", "dataService", function
         "contact_list": angular.copy(contact_list),
         "selected_contact": contact_list[0],
 
-        "taxi_stand_list": taxi_stand_list
+        "taxi_stand_list": taxi_stand_list,
+        "home_time_line_list": home_time_line_list
     };
     $scope.refjson = refjson;
 

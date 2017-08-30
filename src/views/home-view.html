@@ -1,5 +1,11 @@
 <!-- DETAIL CARD -->
 <md-card flex ng-repeat="item in refjson.home_time_line_list" ng-click="null">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline home-view-title">{{item.passanger.name}}</span>
+        </md-card-title-text>
+    </md-card-title>
+
     <md-card-content>
         <div layout="row">
             <div flex="10">
@@ -13,10 +19,6 @@
                 <div ng-if="refjson.selected_contact.type=='C'">
                     <span class="md-title">{{item.driver.name}}</span><br/>
                     <span class="md-subhead">{{item.driver.cab}}</span><br/>
-                </div>
-                <div ng-if="refjson.selected_contact.type=='D'">
-                    <span class="md-title">{{item.passanger.name}}</span><br/>
-                    <span class="md-subhead">{{item.passanger.mobile}}</span><br/>
                 </div>
             </div>
 
@@ -38,4 +40,12 @@
         </div>
     </md-card-content>
 
+    <md-card-actions layout="row" layout-align="start center">
+        <md-chips>
+            <md-chip class="md-caption">{{item.passanger.name}}</md-chip>
+            <md-chip class="md-caption">{{item.passanger.address}}</md-chip>
+            <md-chip class="md-caption">{{item.dest_address}}</md-chip>
+            <md-chip class="md-caption">Fare - 500</md-chip>
+        </md-chips>
+    </md-card-actions>
 </md-card>

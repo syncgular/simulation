@@ -68,8 +68,24 @@
         <!-- MAIN TOOLBAR -->
         <md-toolbar layout="row">
             <div class="md-toolbar-tools">
-                <div flex="40">
+                <div flex="25">
                     <span ng-if="!refjson.home">{{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}</span>
+                </div>
+                <div flex>
+                    <md-button class="md-raised " md-colors="{'background-color': 'primary-500'}">
+                        <ng-md-icon icon="add_circle_outline" class="md-avatar" size="24"></ng-md-icon>
+                        NEW BOOKING
+                    </md-button>
+
+                    <md-button class="md-raised " md-colors="{'background-color': 'primary-500'}">
+                        <ng-md-icon icon="add_circle_outline" class="md-avatar" size="24"></ng-md-icon>
+                        NEW PASSANGER
+                    </md-button>
+
+                    <md-button class="md-raised " md-colors="{'background-color': 'primary-500'}">
+                        <ng-md-icon icon="add_circle_outline" class="md-avatar" size="24"></ng-md-icon>
+                        NEW DRIVER
+                    </md-button>
                 </div>
             </div>
         </md-toolbar>

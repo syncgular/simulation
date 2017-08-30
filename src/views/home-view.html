@@ -12,14 +12,13 @@
     <md-card-content>
         <div layout="row">
             <div flex="10">
-                <md-button class="md-fab  md-mini" ng-class="{'md-primary': refjson.selected_contact.type =='C'}" aria-label="Short Name">
-                    <span ng-if="refjson.selected_contact.type =='D'">{{item.passanger.icon_aplphabates}}</span>
-                    <span ng-if="refjson.selected_contact.type =='C'">{{item.driver.icon_aplphabates}}</span>
+                <md-button class="md-fab  md-mini md-primary" aria-label="Short Name">
+                    <span>{{item.driver.icon_aplphabates}}</span>
                 </md-button>
             </div>
 
             <div flex="25">
-                <div ng-if="refjson.selected_contact.type=='C'">
+                <div>
                     <span class="md-title">{{item.driver.name}}</span><br/>
                     <span class="md-subhead">{{item.driver.cab}}</span><br/>
                 </div>
@@ -31,7 +30,6 @@
                     <span class="md-subhead">&nbsp; to </span>
                     <span class="md-subhead">{{item.dest_address}} </span>
                 </div>-->
-
             </div>
 
             <div>

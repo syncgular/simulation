@@ -23,13 +23,14 @@ app.controller("home-controller", ["$scope", "$timeout", "dataService", function
 
 
     $scope.left_nav_list_user_item_click = function(item) {
+        // Toggle Home View
+        $scope.refjson.home = false;
+
         // MAKE EACH ELEMENT SELECTED FALSE
         _.each($scope.refjson.contact_list, function(iobj) {
             iobj.selected = false;
         });
-
         item.selected = true;
-
         $scope.refjson.selected_contact = item;
     };
 
@@ -88,5 +89,15 @@ app.controller("home-controller", ["$scope", "$timeout", "dataService", function
         }, 60000);
     };
     $scope.taxi_stand_wait_time_refresh();
+
+
+    $scope.home_view = function() {
+        $scope.refjson.home = true;
+
+        // MAKE EACH ELEMENT SELECTED FALSE
+        _.each($scope.refjson.contact_list, function(iobj) {
+            iobj.selected = false;
+        });
+    };
 
 }]);

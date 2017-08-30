@@ -14,7 +14,9 @@ app.controller("home-controller", ["$scope", "$timeout", "dataService", function
         "selected_contact": contact_list[0],
 
         "taxi_stand_list": taxi_stand_list,
-        "home_time_line_list": home_time_line_list
+        "home_time_line_list": home_time_line_list,
+
+        "home": true
     };
     $scope.refjson = refjson;
 

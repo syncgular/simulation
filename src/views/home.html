@@ -68,8 +68,9 @@
         <!-- MAIN TOOLBAR -->
         <md-toolbar layout="row">
             <div class="md-toolbar-tools">
-                <div flex="40">{{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}</div>
-                <!--<div flex>{{refjson.selected_contact.address}} - {{refjson.selected_contact.city}}</div>-->
+                <div flex="40">
+                    <span ng-if="!refjson.home">{{refjson.selected_contact.name}} - {{refjson.selected_contact.mobile}}</span>
+                </div>
             </div>
         </md-toolbar>
 
@@ -82,10 +83,10 @@
                 <md-content flex-offset="5" flex="95" style="height:88vh; overflow-y:scroll ">
 
                     <!-- DETAIL CARD -->
-                    <home-view></home-view>
+                    <home-view ng-if="refjson.home"></home-view>
 
                     <!-- DETAIL CARD -->
-                    <detail-view></detail-view>
+                    <detail-view ng-if="!refjson.home"></detail-view>
 
                 </md-content>
             </div>

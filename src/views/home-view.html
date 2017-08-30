@@ -36,8 +36,11 @@
 
             <div>
                 <div layout="column">
-                    <span>{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
-                    <!--<span>{{item.booking_time | date:'HH:mm'}}</span>-->
+                    <span class="md-headline in-time">
+                        <ng-md-icon icon="watch_later" class="md-avatar" size="24"></ng-md-icon> 
+                        10 Min
+                    </span>
+                    <span style="margin-top:5px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
                 </div>
             </div>
         </div>
@@ -55,7 +58,7 @@
             </md-chip>
             <md-chip class="md-caption">
                 <ng-md-icon icon="attach_money" class="md-avatar" size="18"></ng-md-icon>
-                Fare - 500
+                Fare - {{item.fare}}
             </md-chip>
         </md-chips>
     </md-card-actions>

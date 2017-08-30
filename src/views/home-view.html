@@ -2,7 +2,10 @@
 <md-card flex ng-repeat="item in refjson.home_time_line_list" ng-click="null">
     <md-card-title>
         <md-card-title-text>
-            <span class="md-headline home-view-title">{{item.passanger.name}}</span>
+            <div layout="row" class="home-view-title">
+                <span flex="75" class="md-headline ">{{item.passanger.name}}</span>
+                <span flex="25" class="md-headline ">{{item.passanger.mobile}}</span>
+            </div>
         </md-card-title-text>
     </md-card-title>
 
@@ -23,17 +26,17 @@
             </div>
 
             <div flex-offset="10" flex="35">
-                <div layout="column">
+                <!--<div layout="column">
                     <span class="md-subhead">{{item.passanger.address}} </span>
                     <span class="md-subhead">&nbsp; to </span>
                     <span class="md-subhead">{{item.dest_address}} </span>
-                </div>
+                </div>-->
 
             </div>
 
             <div>
                 <div layout="column">
-                    <span style="font-size:12px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
+                    <span>{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
                     <!--<span>{{item.booking_time | date:'HH:mm'}}</span>-->
                 </div>
             </div>

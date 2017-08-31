@@ -1,7 +1,64 @@
 <div>
 
+    <!-- PERSONAL INFO CARD -->
+    <md-card flex="100">
+
+        <md-card-title>
+            <md-card-title-text>
+                <div layout="row" class="home-view-title">
+                    <span flex="75" class="md-headline ">{{refjson.selected_contact.name}}</span>
+                    <span flex="25" class="md-headline ">{{refjson.selected_contact.mobile}}</span>
+                </div>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <div layout="row">
+                <div flex="10">
+                    <md-button class="md-fab  md-mini md-primary" aria-label="Short Name">
+                        <ng-md-icon icon="place" class="md-avatar" size="18"></ng-md-icon>
+                    </md-button>
+                </div>
+
+                <div flex="25">
+                    <div ng-if="refjson.selected_contact.type=='C'">
+                        <span class="md-title">{{refjson.selected_contact.address}}</span><br/>
+                        <span class="md-subhead">{{refjson.selected_contact.city}}</span><br/>
+                        <span class="md-subhead">{{refjson.selected_contact.landmark}}</span><br/>
+                    </div>
+                    <div ng-if="refjson.selected_contact.type=='D'">
+                        <span class="md-title">{{refjson.selected_contact.cab}}</span><br/>
+                        <span class="md-subhead">Taxi Stand</span><br/>
+                    </div>
+                </div>
+
+                <div flex-offset="10" flex="35">
+                </div>
+
+                <div flex>
+                    <div layout="column">
+                    </div>
+                </div>
+            </div>
+        </md-card-content>
+
+        <md-card-actions layout="row" layout-align="end center">
+            <md-chips>
+                <md-chip class="md-caption">
+                    <ng-md-icon icon="place" class="md-avatar" size="18"></ng-md-icon>
+                </md-chip>
+                <md-chip class="md-caption">
+                    <ng-md-icon icon="favorite" class="md-avatar" size="18"></ng-md-icon>
+                </md-chip>
+                <md-chip class="md-caption">
+                    <ng-md-icon icon="stars" class="md-avatar" size="18"></ng-md-icon>
+                </md-chip>
+            </md-chips>
+        </md-card-actions>
+    </md-card>
 
 
+    <!-- TIME LINE ROW -->
     <div layout="row" layout-align="center center">
         <md-button flex="100" class="md-raised md-primary">
             TRAVEL TIME LINE

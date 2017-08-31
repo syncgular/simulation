@@ -100,8 +100,13 @@
 
                 <div flex>
                     <div layout="column">
+                        <span ng-if="item.show_time_ticker" class="md-headline in-time">
+                            <ng-md-icon icon="watch_later" class="md-avatar" size="24"></ng-md-icon> 
+                            {{item.hour}}:{{item.minute}}:{{item.second}}
+                        </span>
                         <span>{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
-                        <span class="md-headline ">
+
+                        <span ng-if="!item.show_time_ticker" class="md-headline ">
                             <ng-md-icon icon="check_box" class="md-avatar" style="fill:green; margin-top:10px" size="40"></ng-md-icon> 
                         </span>
                     </div>

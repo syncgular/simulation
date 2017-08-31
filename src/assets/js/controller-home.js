@@ -122,4 +122,28 @@ app.controller("home-controller", ["$scope", "$timeout", "dataService", function
     };
     $scope.remaing_time_refresh();
 
+
+
+    $scope.selected_contact_time_refresh = function() {
+        if ($scope.refjson.selected_contact) {
+            _.each($scope.refjson.selected_contact.time_line_list, function(item) {
+                if (moment().isBefore(item.booking_time)) {
+                    item.show_time_ticker = true;
+
+                    var duration = moment.duration(moment(item.booking_time).diff(moment()));
+                    item.hour = (duration.hours() + "").length == 1 ? "0" + duration.hours() : duration.hours();
+                    item.minute = (duration.minutes() + "").length == 1 ? "0" + duration.minutes() : duration.minutes();
+                    item.second = (duration.seconds() + "").length == 1 ? "0" + duration.seconds() : duration.seconds();
+                } else {
+                    item.show_time_ticker = false;
+                }
+            });
+        }
+
+        $timeout(function() {
+            $scope.selected_contact_time_refresh();
+        }, 1000);
+    };
+    $scope.selected_contact_time_refresh();
+
 }]);

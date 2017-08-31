@@ -207,8 +207,10 @@ app.service("dataService", [function() {
                 time_line[key] = rand_dest_obj[key];
             }
 
-            var dmonth = this.getRandomInt(8, 8);
-            var ddate = this.getRandomInt(moment().date() - 2, moment().date() - 1);
+            var dmonth = this.getRandomInt(8, 9);
+            var rand_date_num = this.getRandomInt(0, 1);
+            console.log(rand_date_num);
+            var ddate = (rand_date_num == 0) ? moment().subtract(1, 'd').date() : moment().add(2, 'd').date();
             var dhour = this.getRandomInt(1, 23);
             var dmin = this.getRandomInt(0, 59);
             var dstr = `2017-${dmonth}-${ddate} ${dhour}:${dmin}`;
@@ -243,6 +245,19 @@ app.service("dataService", [function() {
         _.each(temp_driver_list, function(item) {
 
             home_time_line_list = home_time_line_list.concat(item.time_line_list);
+        });
+
+
+        // if current time is greate then booking time
+        _.each(home_time_line_list, function(item) {
+            if (moment().isBefore(item.booking_time)) {
+                item.show_time_ticker = true;
+
+                var duration = moment.duration(moment(item.booking_time).diff(moment()));
+                item.hour = (duration.hours() + "").length == 1 ? "0" + duration.hours() : duration.hours();
+                item.minute = (duration.minutes() + "").length == 1 ? "0" + duration.minutes() : duration.minutes();
+                item.second = (duration.seconds() + "").length == 1 ? "0" + duration.seconds() : duration.seconds();
+            }
         });
 
         home_time_line_list = _.sortBy(home_time_line_list, "booking_time");

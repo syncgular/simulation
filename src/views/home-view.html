@@ -34,9 +34,9 @@
 
             <div>
                 <div layout="column">
-                    <span class="md-headline in-time">
+                    <span ng-if="item.show_time_ticker" class="md-headline in-time">
                         <ng-md-icon icon="watch_later" class="md-avatar" size="24"></ng-md-icon> 
-                        10 Min
+                        {{item.hour}}:{{item.minute}}:{{item.second}}
                     </span>
                     <span style="margin-top:5px;">{{item.booking_time | date:'dd MMM yy HH:mm'}}</span>
                 </div>

@@ -207,22 +207,22 @@ app.service("dataService", [function() {
                 time_line[key] = rand_dest_obj[key];
             }
 
-            var dmonth = this.getRandomInt(8, 9);
-            var rand_date_num = this.getRandomInt(0, 1);
-            console.log(rand_date_num);
-            var ddate = (rand_date_num == 0) ? moment().subtract(1, 'd').date() : moment().add(2, 'd').date();
-            var dhour = this.getRandomInt(1, 23);
+            var dmonth = this.getRandomInt(9, 9);
+            var ddate = this.getRandomInt(moment().subtract(1, 'd').date(), moment().date());
+            var dhour = this.getRandomInt(moment().subtract(4, 'h').hours(), moment().add(5, 'm').hours());
             var dmin = this.getRandomInt(0, 59);
             var dstr = `2017-${dmonth}-${ddate} ${dhour}:${dmin}`;
             time_line.booking_time = moment(dstr, 'YYYY-MM-DD HH:mm').toDate();
             time_line.pickup_time = moment(dstr, 'YYYY-MM-DD HH:mm').toDate();
 
-            // PUSH TO CUSTOMER TIME LINE
-            time_line_list.push(time_line);
+            if (moment().isAfter(moment(dstr, 'YYYY-MM-DD HH:mm'))) {
+                // PUSH TO CUSTOMER TIME LINE
+                time_line_list.push(time_line);
 
-            // PUSH TO DRIVER TIME LINE
-            rand_driver_obj.time_line_list = rand_driver_obj.time_line_list || [];
-            rand_driver_obj.time_line_list.push(time_line);
+                // PUSH TO DRIVER TIME LINE
+                rand_driver_obj.time_line_list = rand_driver_obj.time_line_list || [];
+                rand_driver_obj.time_line_list.push(time_line);
+            }
         }
 
         time_line_list = _.sortBy(time_line_list, 'booking_time');
